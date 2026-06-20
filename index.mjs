@@ -33286,8 +33286,8 @@ app.use("/api", routes_default);
 var staticDir = process.env["STATIC_DIR"];
 if (staticDir && fs.existsSync(staticDir)) {
   app.use(import_express4.default.static(staticDir));
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticDir, "index.html"));
+  app.get("/*splat", (_req, res) => {
+    res.sendFile(path.resolve(staticDir, "index.html"));
   });
   logger.info({ staticDir }, "Serving static files");
 }
